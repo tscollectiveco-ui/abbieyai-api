@@ -2,6 +2,10 @@
 
 A Cloudflare Worker-based AI chatbot API that provides conversational AI capabilities with multiple specialized templates.
 
+## Preview
+
+The API is deployed and available at: **https://abbieyai-api.tscollective-co.workers.dev/**
+
 ## Features
 
 - **Multiple Templates**: Choose from different conversation styles
