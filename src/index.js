@@ -47,7 +47,8 @@ const templates = {
 };
 
 function getTemplate(name = "default") {
-  return templates[name] || templates.default;
+  const templateName = templates[name] ? name : "default";
+  return { template: templates[templateName], name: templateName };
 }
 __name(getTemplate, "getTemplate");
 
@@ -102,7 +103,7 @@ async function handleChat(request, env) {
       );
     }
 
-    const template = getTemplate(body.template);
+    const { template, name: templateName } = getTemplate(body.template);
     const aiResponse = await generateAIResponse(
       env.AI,
       body.message,
@@ -113,7 +114,7 @@ async function handleChat(request, env) {
     return new Response(
       JSON.stringify({
         response: aiResponse,
-        template: body.template || "default",
+        template: templateName,
         timestamp: new Date().toISOString()
       }),
       { headers: { "Content-Type": "application/json", ...corsHeaders } }
@@ -129,8 +130,8 @@ async function handleChat(request, env) {
 __name(handleChat, "handleChat");
 
 function handleGreeting(request) {
-  const templateName = new URL(request.url).searchParams.get("template") || "default";
-  const template = getTemplate(templateName);
+  const requestedTemplate = new URL(request.url).searchParams.get("template") || "default";
+  const { template, name: templateName } = getTemplate(requestedTemplate);
 
   return new Response(
     JSON.stringify({
