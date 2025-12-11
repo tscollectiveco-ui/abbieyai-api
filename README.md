@@ -2,6 +2,16 @@
 
 A Cloudflare Worker-based AI chatbot API that provides conversational AI capabilities with multiple specialized templates.
 
+## Client Library
+
+A JavaScript client library (`index.js`) is provided to easily connect web pages to this API. See [CLIENT.md](CLIENT.md) for full documentation and usage examples, or open `example.html` for a live demo.
+
+**Quick Start:**
+```javascript
+const client = new AbbieyAIClient({ apiUrl: 'https://your-worker.workers.dev' });
+const response = await client.chat('Hello!');
+```
+
 ## Features
 
 - **Multiple Templates**: Choose from different conversation styles
