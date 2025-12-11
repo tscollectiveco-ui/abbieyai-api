@@ -185,7 +185,7 @@ export default {
             chat: "POST /chat",
             greeting: "GET /greeting?template=<name>",
             templates: "GET /templates",
-            health: "GET /health"
+            health: "GET / or GET /health"
           }
         }),
         { 
