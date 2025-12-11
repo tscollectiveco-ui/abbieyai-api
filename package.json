@@ -1,0 +1,16 @@
+{
+  "name": "abbieyai-api",
+  "version": "1.0.0",
+  "description": "API for AbbieYAI with OpenAI integration",
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler pages dev",
+    "deploy": "wrangler pages deploy"
+  },
+  "keywords": ["cloudflare", "pages", "api", "openai"],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "wrangler": "^3.0.0"
+  }
+}
