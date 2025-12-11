@@ -130,8 +130,8 @@ async function handleChat(request, env) {
 __name(handleChat, "handleChat");
 
 function handleGreeting(request) {
-  const requestedTemplate = new URL(request.url).searchParams.get("template") || "default";
-  const { template, name: templateName } = getTemplate(requestedTemplate);
+  const templateQuery = new URL(request.url).searchParams.get("template") || "default";
+  const { template, name: templateName } = getTemplate(templateQuery);
 
   return new Response(
     JSON.stringify({
