@@ -11,6 +11,9 @@ A JavaScript client library (`index.js`) is provided to easily connect web pages
 const client = new AbbieyAIClient({ apiUrl: 'https://your-worker.workers.dev' });
 const response = await client.chat('Hello!');
 ```
+## Preview
+
+The API is deployed and available at: **https://abbieyai-api.tscollective-co.workers.dev/**
 
 ## Features
 
