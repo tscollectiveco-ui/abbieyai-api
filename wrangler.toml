@@ -1,0 +1,11 @@
+name = "abbieyai-api"
+main = "src/index.ts"
+compatibility_date = "2024-01-01"
+
+# AI binding for Cloudflare AI
+[ai]
+binding = "AI"
+
+# Environment variables (configure these in Cloudflare dashboard or via secrets)
+# [vars]
+# OPENAI_API_KEY = "your-key-here" # If using OpenAI instead of Cloudflare AI
