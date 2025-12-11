@@ -9,13 +9,13 @@ export async function onRequestPost(context) {
     if (pathname === "/api/moderation") return handleModeration(request, env);
 
     return json({ error: "Not found" }, 404);
-  } catch (err) {
-    return json({ error: err.message || "Internal Server Error" }, 500);
+  } catch (error) {
+    return json({ error: error.message || "Internal Server Error" }, 500);
   }
 }
 
-function json(obj, status = 200) {
-  return new Response(JSON.stringify(obj), {
+function json(responseData, status = 200) {
+  return new Response(JSON.stringify(responseData), {
     status,
     headers: {
       "Content-Type": "application/json",
@@ -32,12 +32,12 @@ async function handleChat(request, env) {
     return json({ error: "messages must be a non-empty array" }, 400);
   }
 
-  const result = await env.OPENAI.chat.completions.create({
+  const chatCompletion = await env.OPENAI.chat.completions.create({
     model,
     messages
   });
 
-  return json(result);
+  return json(chatCompletion);
 }
 
 // Embeddings
@@ -48,12 +48,12 @@ async function handleEmbeddings(request, env) {
     return json({ error: "input must be a non-empty string or array" }, 400);
   }
 
-  const result = await env.OPENAI.embeddings.create({
+  const embeddingResult = await env.OPENAI.embeddings.create({
     model,
     input
   });
 
-  return json(result);
+  return json(embeddingResult);
 }
 
 // Moderation
@@ -64,10 +64,10 @@ async function handleModeration(request, env) {
     return json({ error: "input must be a non-empty string or array" }, 400);
   }
 
-  const result = await env.OPENAI.moderations.create({
+  const moderationResult = await env.OPENAI.moderations.create({
     model: "omni-moderation-latest",
     input
   });
 
-  return json(result);
+  return json(moderationResult);
 }
