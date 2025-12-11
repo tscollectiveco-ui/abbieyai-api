@@ -175,6 +175,26 @@ export default {
 
     if (method === "OPTIONS") return handleOptions();
 
+    // Handle requests for JavaScript files (prevent "Unexpected token '<'" errors)
+    if (path.endsWith('.js') || path.endsWith('.mjs')) {
+      return new Response(
+        JSON.stringify({
+          error: "This is an API endpoint, not a JavaScript module",
+          message: "Please use the API endpoints to interact with this service",
+          endpoints: {
+            chat: "POST /chat",
+            greeting: "GET /greeting?template=<name>",
+            templates: "GET /templates",
+            health: "GET /health"
+          }
+        }),
+        { 
+          status: 400,
+          headers: { "Content-Type": "application/json", ...corsHeaders } 
+        }
+      );
+    }
+
     if (router[path] && router[path][method]) {
       return router[path][method](request, env);
     }
