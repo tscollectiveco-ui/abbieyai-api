@@ -1,0 +1,15 @@
+# Development Environment Variables Template
+# Copy this file to .dev.vars and fill in your actual values
+
+# Cloudflare API Token (for deployment)
+# Get this from: https://dash.cloudflare.com/profile/api-tokens
+# Required scopes: Workers Scripts:Edit, Workers Routes:Edit
+# CLOUDFLARE_API_TOKEN=your_api_token_here
+
+# Cloudflare Account ID
+# Find this in your Cloudflare dashboard
+# CLOUDFLARE_ACCOUNT_ID=your_account_id_here
+
+# Optional: Custom environment variables for your worker
+# Add any additional environment variables your worker needs below
+# CUSTOM_VAR=value

@@ -1,0 +1,69 @@
+name: Preview Deployment
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    name: Preview Deployment
+    
+    permissions:
+      contents: read
+      pull-requests: write
+      deployments: write
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.node-version'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Deploy Preview to Cloudflare Pages
+        uses: cloudflare/pages-action@v1
+        id: deploy
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          projectName: abbieyai-api
+          directory: public
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.head_ref }}
+
+      - name: Comment PR with Preview URL
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const previewUrl = '${{ steps.deploy.outputs.url }}';
+            const comment = `## 🚀 Preview Deployment Ready!
+            
+            Your preview deployment is ready for testing:
+            
+            **Preview URL:** ${previewUrl}
+            
+            ### What's Deployed:
+            - ✅ Frontend static assets
+            - ✅ Cloudflare Worker API
+            - ✅ All latest changes from this PR
+            
+            The preview will be automatically updated on new commits.`;
+            
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: comment
+            });
+
+      - name: Preview deployment summary
+        run: |
+          echo "✅ Preview deployment completed!"
+          echo "🔗 Preview URL: ${{ steps.deploy.outputs.url }}"
