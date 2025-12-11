@@ -1,4 +1,4 @@
-import { getTemplate, ChatTemplate } from './templates';
+import { getTemplate, ChatTemplate, templates } from './templates';
 
 /**
  * Environment bindings for Cloudflare Workers
@@ -61,7 +61,6 @@ async function generateAIResponse(
     ];
 
     // Use Cloudflare AI to generate response
-    // @ts-ignore - Cloudflare AI binding types
     const response = await ai.run('@cf/meta/llama-2-7b-chat-int8', {
       messages: messages,
     });
@@ -148,9 +147,7 @@ function handleGreeting(request: Request): Response {
  * List available templates
  */
 function handleTemplates(): Response {
-  const templateList = Object.keys(getTemplate('default')).length > 0 
-    ? ['default', 'customer_support', 'sales', 'technical']
-    : [];
+  const templateList = Object.keys(templates);
 
   return new Response(
     JSON.stringify({
