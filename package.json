@@ -1,0 +1,24 @@
+{
+  "name": "abbieyai-api",
+  "version": "1.0.1",
+  "description": "Abbiey AI Chatbot API - Cloudflare Worker",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "start": "wrangler dev"
+  },
+  "keywords": [
+    "cloudflare",
+    "worker",
+    "ai",
+    "chatbot",
+    "api"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "wrangler": "^3.0.0"
+  }
+}
