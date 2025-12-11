@@ -1,0 +1,20 @@
+{
+  "name": "Abbiey AI",
+  "short_name": "Abbiey AI",
+  "description": "Intelligent AI Assistant for customer support, sales, and technical assistance",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#667eea",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["productivity", "business", "utilities"],
+  "screenshots": []
+}

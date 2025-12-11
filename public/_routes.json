@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "include": [
+    "/chat",
+    "/greeting",
+    "/templates",
+    "/health"
+  ],
+  "exclude": [
+    "/css/*",
+    "/js/*",
+    "/favicon.svg",
+    "/manifest.json",
+    "/*.html",
+    "/*.css",
+    "/*.js",
+    "/*.svg",
+    "/*.png",
+    "/*.jpg",
+    "/*.jpeg",
+    "/*.gif",
+    "/*.ico",
+    "/*.json"
+  ]
+}

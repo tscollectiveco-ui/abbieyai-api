@@ -13,3 +13,22 @@ yarn-error.log*
 *~
 .vscode/
 .idea/
+
+# Cloudflare Pages
+.vercel/
+.cache/
+public/.cache/
+
+# Build artifacts
+build/
+out/
+.next/
+
+# Testing
+coverage/
+.nyc_output/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
