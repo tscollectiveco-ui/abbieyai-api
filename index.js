@@ -40,7 +40,7 @@ class AbbieyAIClient {
 
       return await response.json();
     } catch (error) {
-      console.error('API request failed:', error);
+      // Re-throw the error for consumers to handle
       throw error;
     }
   }
@@ -135,22 +135,10 @@ class AbbieyAIClient {
 }
 
 // Export for different module systems
-// ES6 default export
+// ES6 default export (primary)
 export default AbbieyAIClient;
 
-// CommonJS (for Node.js environments that need it)
-if (typeof module !== 'undefined' && module.exports) {
-  module.exports = AbbieyAIClient;
-}
-
+// Browser global
 if (typeof window !== 'undefined') {
-  // Browser global
   window.AbbieyAIClient = AbbieyAIClient;
-}
-
-if (typeof define === 'function' && define.amd) {
-  // AMD
-  define([], function() {
-    return AbbieyAIClient;
-  });
 }

@@ -15,10 +15,7 @@ Include the `index.js` file directly in your HTML:
 ### Node.js / Module Bundlers
 
 ```javascript
-// CommonJS
-const AbbieyAIClient = require('./index.js');
-
-// ES6 Modules (if configured)
+// ES6 Modules
 import AbbieyAIClient from './index.js';
 ```
 
